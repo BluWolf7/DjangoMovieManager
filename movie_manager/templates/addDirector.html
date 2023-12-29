@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Director</title>
+</head>
+<body>
+    {% extends 'basic_layout.html' %}
+
+    {% block sampleName %}
+
+    <h2> Add A New Director</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ frm.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endblock sampleName %}
+
+
+    
+</body>
+</html>

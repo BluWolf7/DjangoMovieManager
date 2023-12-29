@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Movie Entry</title>
+</head>
+<body>
+    {% extends 'basic_layout.html' %}
+    <!-- <h1>List Movies</h1> -->
+    <!-- Example for include tag for including other templates ( better way is use template Inheritance and override block) -->
+    <!-- {% include 'menu.html' %} -->
+    {% load static %}
+    {% block sampleName %}
+    
+    <table border="1px solid black">
+        <tr><th>Title</th><th>Poster</th><th>Description</th><th>Year</th><th>Success</th></tr>
+    <h1>List of Movies </h1>
+    {% for movie_obj in movies %}
+    <tr>
+        <td><h2>{{movie_obj.title |upper}}</h2></td>
+        <td><img src="{% static 'images/' %}{{movie_obj.img}}" alt="Movie Poster" width="183" height="275"></td>
+        <td><p>{{movie_obj.summary| default:'No summary :(' | upper}}  </p></td>
+        <td> <h3>{{movie_obj.year}}</h3></td>
+        <td>
+            {% if movie_obj.success %}
+            <p>MOVIE WAS SUCCESSFUL ON RELEASE </p>
+            {% else %}
+            <p>MOVIE FAILED ON RELEASE</p>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+    {% endblock sampleName %}
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Movie Entry</title>
+</head>
+<body>
+    {% extends 'basic_layout.html' %}
+    <!-- <h1>List Movies</h1> -->
+    <!-- Example for include tag for including other templates ( better way is use template Inheritance and override block) -->
+    <!-- {% include 'menu.html' %} -->
+    {% block sampleName %}
+    <p><u>Recently edited Movies</u> </p>
+    {% for movies in recent_movies %}
+    <ul><li><p>{{movies.title | upper }}</li></p></ul>
+    {% endfor %}
+    <h1>List of Movies {{visits}} times visited </h1>
+    <table border="1px solid black">
+        <tr><th>Poster</th><th>Title</th><th>Year</th><th>Description</th><th>Edit/Delete</th></tr>
+    {% for movie_obj in movies %}
+    <tr>
+        <td>{% if movie_obj.poster %}
+            <img src="{{ movie_obj.poster.url }}" alt="{{ movie_obj.title }} poster" width="183" height="275">
+        {% else %}
+            <p>No poster available</p>
+        {% endif %}</td>
+        <td><h2>{{movie_obj.title |upper}}</h2></td>
+        <td><h3>{{movie_obj.year}}</h3></td>
+        <td><p> {{movie_obj.description| default:'No summary :('}}  </p></td>
+        <td> <a href="{% url 'edit' movie_obj.id %}">edit </a> <a href="{% url 'delete' movie_obj.id %}">delete </a></td>
+    </tr>
+    {% endfor %}
+    </table>    
+    {% endblock sampleName %}
+
+</body>
+</html>

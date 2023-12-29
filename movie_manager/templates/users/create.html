@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <center>
+        {% extends 'basic_layout.html' %}
+            {% block sampleName %}
+                <fieldset style="border: 1px solid #000; padding: 20px;">
+                    <legend>Create User</legend>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p><label>Username: </label> <input type="text" name="username" ></p>
+                        <p><label>Password: </label> <input type="password" name="password" ></p>
+                        <button type="submit">Signup</button>
+                    </form>
+                    <p style="background-color: green; color: yellow;">{% if user %}
+                        New user with Username:{{user.username}}  created ! 
+                        {% endif %}
+                    </p>
+                    <p style="background-color: firebrick; color: yellow;">{% if error_message %}
+                        Error: {{error_message}} 
+                        {% endif %}
+                    </p>
+                </fieldset>
+            {% endblock sampleName %}
+    </center>
+</body>
+</html>

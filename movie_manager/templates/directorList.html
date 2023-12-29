@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Directors</title>
+</head>
+<body>
+    {% extends 'basic_layout.html' %}
+    {% block sampleName %}
+    <h1>List of Directors </h1>
+    <table border="1px solid black">
+        <tr><th>Name</th><th>Photo</th><th>edit/delete</th></tr>
+    {% for dir_obj in directors %}
+    <tr>
+        <td><h2>{{dir_obj.name |upper}}</h2></td>
+        <td><h2>{% if dir_obj.image %}
+            <img src="{{ dir_obj.image.url }}" alt="{{ dir_obj.name}}"  width="183" height="225"/>
+            {% endif %}
+        </h2></td>
+        <td> <a href="{% url 'editDirector' dir_obj.id %}">edit </a> <a href="{% url 'deleteDirector' dir_obj.id %}">delete </a></td>
+    </tr>
+    {% endfor %}
+    </table>    
+    {% endblock sampleName %}
+
+</body>
+</html>

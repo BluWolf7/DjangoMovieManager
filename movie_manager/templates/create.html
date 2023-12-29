@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Movie Entry</title>
+</head>
+<body>
+    <!-- extend parent for Inheritance -->
+    {% extends 'basic_layout.html' %}
+    <!-- override block in parent -->
+    {% block sampleName %}
+    <h2>Movie Details</h2>  
+    <form method="post" enctype="multipart/form-data">
+        <!-- Django's built in csrf token is needed for any form submission it prevents cross site forgery attacks -->
+            {% csrf_token %}
+        <!-- Title: <input type="text" name="title" placeholder="Enter name of the movie"> <br>
+        Year: <input type="number" name="year" placeholder="Enter the year of release"> <br>
+        Summary: <input type="text" name="summary" placeholder="Enter the summary of the movie"><br> -->
+            {{ frm.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endblock sampleName %}
+    
+    
+</body>
+</html>
